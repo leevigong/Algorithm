@@ -19,10 +19,7 @@ public class Main {
                     System.out.println("Isosceles");
                 }
             }
-            else if (b==c){
-                System.out.println("Isosceles");
-            }
-            else if (a==c){
+            else if ((b==c)||(a==c)){
                 System.out.println("Isosceles");
             }
             else{
