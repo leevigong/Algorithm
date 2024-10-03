@@ -2,7 +2,7 @@ from collections import deque
 
 def dfs(node, visited):
     visited.append(node)
-        
+    print(node, end=' ')
     indexes = [i for i, x in enumerate(graph[node]) if x == 1]
     for i in indexes:
         if i not in visited:
@@ -13,7 +13,6 @@ def bfs(start):
     queue = deque([start])
     while queue:
         node = queue.popleft()
-        
         if node not in visited:
             visited.append(node)
             indexes = [i for i, x in enumerate(graph[node]) if x == 1]
@@ -31,6 +30,6 @@ for _ in range(M):
 
 visited = []
 dfs(V, visited)
-print(*visited)
+print()
 
 bfs(V)
