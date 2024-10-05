@@ -1,36 +1,35 @@
 from collections import deque
 
-N, M, V = map(int, input().split())  
+N, M, V = map(int, input().split())
 
-# 인접 행렬
-graph = list([0]*(N+1) for _ in range(N+1)) 
+graph = [[False] * (N + 1) for _ in range(N + 1)]
+
 for _ in range(M):
-    s, d = map(int, input().split())
-    graph[s][d] = graph[d][s] = 1
+    a, b = map(int, input().split())
+    graph[a][b] = graph[b][a] =  True
 
-# 방문 기록 행렬
-visited1 = [0] * (N+1)
-visited2 = [0] * (N+1)
+visited1 = [False] * (N + 1) 
+visited2 = [False] * (N + 1) 
 
-# dfs
-def dfs(node):
-    visited1[node] = 1 # 방문
-    print(node, end=' ')
-    for i in range(1, N+1):
-        if graph[node][i] == 1 and visited1[i] == 0:
-            dfs(i)
-# bfs
-def bfs(node):
-    queue = deque([node])
-    visited2[node] = 1 
-    while queue:
-        node = queue.popleft()
-        print(node, end=' ')    
-        for i in range(1, N+1):
-            if(graph[node][i] == 1 and visited2[i] == 0):
-                queue.append(i)
-                visited2[i] = 1
-## 
+
+def dfs(V):
+    visited1[V] = True 
+    print(V, end=" ")
+    for i in range(1, N + 1):
+        if graph[V][i] and not visited1[i]: 
+            dfs(i) 
+
+def bfs(V):
+    q = deque([V])  
+    visited2[V] = True 
+    while q:  
+        V = q.popleft()  
+        print(V, end=" ")  
+        for i in range(1, N + 1):  
+            if graph[V][i] and not visited2[i]: 
+                q.append(i)  
+                visited2[i] = True 
+
 dfs(V)
 print()
 bfs(V)
