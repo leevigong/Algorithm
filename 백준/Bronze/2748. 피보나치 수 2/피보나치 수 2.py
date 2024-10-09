@@ -1,8 +1,7 @@
 n = int(input())
-fi = []
-fi.append(0)
-fi.append(1)
+fi = [0] *  91
+fi[1] = 1
 for i in range(2, n+1):
-    fi.append(fi[i-1] + fi[i-2])
+    fi[i] = fi[i-1] + fi[i-2]
 
 print(fi[n])
